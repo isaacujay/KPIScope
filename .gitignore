@@ -15,3 +15,9 @@ data/processed/*.parquet
 *.pbix.temp
 powerbi/*.credentials*
 .env
+.vs/
+*.vsidx
+*.suo
+*.user
+bin/
+obj/
