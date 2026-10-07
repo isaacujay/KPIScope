@@ -95,7 +95,7 @@ FROM sys.schemas s
 WHERE s.name IN (N'raw', N'staging', N'clean', N'mart')
 ORDER BY s.name;
 
-SELECT t.name AS raw_table
+SELECT t.name AS raw_table 
 FROM sys.tables t
 WHERE t.schema_id = SCHEMA_ID(N'raw')
 ORDER BY t.name;
