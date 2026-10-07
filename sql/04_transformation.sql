@@ -1,7 +1,7 @@
 /* 
 
    staging -> clean: derived analytical columns. All business logic lives
-   here, never in Python or DAX.
+   here.
 
    Transformation log (input -> rule -> output):
      churn_flag                   -> =0 means active                  -> is_active_flag
@@ -166,7 +166,7 @@ INTO clean.subscription_activity
 FROM staging.subscriptions s;
 GO
 
--- clean.support_tickets ------------------------------------------------
+-- clean.support_tickets 
 SELECT
     t.ticket_id,
     t.account_id,
@@ -192,7 +192,7 @@ INTO clean.churn_events
 FROM staging.churn_events c;
 GO
 
--- clean.feature_usage (pass-through, orphans flagged) -------------------
+-- clean.feature_usage (pass-through, orphans flagged) 
 SELECT
     f.*,
     CASE WHEN EXISTS (SELECT 1 FROM staging.subscriptions s
@@ -202,7 +202,7 @@ INTO clean.feature_usage
 FROM staging.feature_usage f;
 GO
 
--- Spot-check: compare 5 clean rows against their source rows --------------
+-- Spot-check: compare 5 clean rows against their source rows 
 SELECT TOP (5)
     a.account_id, a.signup_date, a.churn_flag, a.is_active_flag, a.is_churned_flag,
     a.tenure_days, a.tenure_band, a.ticket_count, a.support_load_flag

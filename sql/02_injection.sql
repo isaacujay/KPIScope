@@ -55,7 +55,7 @@ CLOSE load_cur;
 DEALLOCATE load_cur;
 GO
 
--- Gate check: row counts must match the source exactly ---------------
+-- Gate check: row counts must match the source exactly 
 SELECT  x.table_name,
         x.expected_rows,
         x.actual_rows,

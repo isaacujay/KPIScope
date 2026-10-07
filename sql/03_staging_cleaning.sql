@@ -219,8 +219,12 @@ GO
 
 -- 1) Failed casts: value was present in raw but became NULL in staging
 -- Identify values lost due to unparseable date/numeric formatting in raw
-INSERT INTO staging.dq_log (stage, table_name, check_name, issue_count)
-SELECT 'staging', 'accounts', 'failed_cast: signup_date', COUNT(*)
+INSERT INTO staging.dq_log
+    (stage, table_name, check_name, issue_count)
+SELECT 'staging',
+     'accounts', 
+     'failed_cast: signup_date', 
+     COUNT(*)
 FROM raw.accounts
 WHERE NULLIF(TRIM(signup_date), N'') IS NOT NULL
   AND TRY_CAST(NULLIF(TRIM(signup_date), N'') AS DATE) IS NULL
